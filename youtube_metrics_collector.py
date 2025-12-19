@@ -1,7 +1,7 @@
 """
 YouTube Video Metrics Collector
 
-This script reads a CSV containing YouTube video URLs and retrieves detailed
+This script reads a CSV containing YouTube video URLs and retrieves 
 metrics for each video using the YouTube Data API v3. It outputs a new CSV
 with comprehensive video statistics.
 
@@ -9,7 +9,7 @@ Requirements:
     - google-api-python-client
     - pandas
 
-Install with: pip install google-api-python-client pandas
+Install with: conda install -c conda-forge google-api-python-client pandas
 """
 
 import csv

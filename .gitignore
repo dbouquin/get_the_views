@@ -216,7 +216,7 @@ secrets.txt
 .secrets
 
 # Output files
-youtube_metrics_output.csv
+results/
 *_output.csv
 *_results.csv
 

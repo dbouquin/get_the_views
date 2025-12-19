@@ -27,11 +27,10 @@ from googleapiclient.errors import HttpError
 # File paths
 API_KEY_FILE = "youtube_api_key.txt"
 INPUT_CSV = "2025_video_links.csv"
-
-#get date for output file name
+# Get date for output file name
 from datetime import datetime
-current_date = datetime.now().strftime("%Y%m%d")
-OUTPUT_CSV = f"youtube_metrics_output_{current_date}.csv"
+current_date = datetime.now().strftime("%Y%m%d_%H%M%S")
+OUTPUT_CSV = f"results/youtube_metrics_output_{current_date}.csv"
 
 
 def read_api_key(filename: str) -> str:

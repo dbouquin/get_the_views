@@ -27,7 +27,11 @@ from googleapiclient.errors import HttpError
 # File paths
 API_KEY_FILE = "youtube_api_key.txt"
 INPUT_CSV = "2025_video_links.csv"
-OUTPUT_CSV = "youtube_metrics_output.csv"
+
+#get date for output file name
+from datetime import datetime
+current_date = datetime.now().strftime("%Y%m%d")
+OUTPUT_CSV = f"youtube_metrics_output_{current_date}.csv"
 
 
 def read_api_key(filename: str) -> str:
@@ -214,7 +218,7 @@ def read_input_csv(filename: str) -> List[Dict[str, str]]:
     with open(filename, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # Handle different possible column name formats
+            # Handle different possible column name formats in the input CSV
             nickname = row.get('Nickname') or row.get('nickname')
             link = row.get('Link') or row.get('link') or row.get('URL') or row.get('url')
             
@@ -268,7 +272,7 @@ def write_output_csv(filename: str, data: List[Dict[str, str]]):
 
 def main():
     """
-    Main execution function that orchestrates the entire metrics collection process.
+    Main execution function that orchestrates the full process.
     
     Steps:
     1. Load API key from file
@@ -333,10 +337,10 @@ def main():
         }
         
         output_data.append(combined_row)
-    
-    # Sort by nickname for easier reading
-    output_data.sort(key=lambda x: x['nickname'])
-    
+
+    # Sort by upload date for easier reading
+    output_data.sort(key=lambda x: x['upload_date'])
+
     # Write output CSV
     print(f"Writing output file: {OUTPUT_CSV}")
     write_output_csv(OUTPUT_CSV, output_data)
